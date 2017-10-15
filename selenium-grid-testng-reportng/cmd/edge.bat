@@ -1,0 +1,1 @@
+java -Dwebdriver.edge.driver=MicrosoftWebDriver.exe -jar selenium-server-standalone-3.4.0.jar -role node -port 6666 -hub http://10.0.205.61:4444/grid/register -browser browserName=edge,maxInstances=5

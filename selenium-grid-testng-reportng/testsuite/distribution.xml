@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="distribution" parallel="tests" thread-count="5">
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"></listener>
+        <listener class-name="net.automation.selenium.java.distribution.listener.TestListener"></listener>
+        <listener class-name="net.automation.selenium.java.distribution.listener.RetryListener"></listener>
+    </listeners>
+    
+    <parameter name="url" value="https://github.com/"></parameter>
+    <parameter name="username" value="swlxm"></parameter>
+    <test name="chrome">
+        <parameter name="browser" value="chrome"></parameter>
+        <parameter name="remoteAddress" value="http://10.0.205.61:5555/wd/hub"></parameter>
+        <classes>
+            <class name="net.automation.selenium.java.distribution.scripts.SomeScript"></class>
+        <!-- 
+         -->
+        </classes>
+    </test>
+
+    <test name="firefox">
+        <parameter name="browser" value="firefox"></parameter>
+        <parameter name="remoteAddress" value="http://10.0.205.61:6666/wd/hub"></parameter>
+        <classes>
+            <!--  
+            <class name="net.automation.selenium.java.distribution.scripts.NewApp"></class>
+            -->
+        </classes>
+    </test>
+    
+    <test name="edge">
+        <parameter name="browser" value="edge"></parameter>
+        <parameter name="remoteAddress" value="http://10.0.205.61:6666/wd/hub"></parameter>
+        <classes>
+            <!--  
+            <class name="net.automation.selenium.java.distribution.scripts.NewApp"></class>
+            -->
+        </classes>
+    </test>
+
+    <test name="ie">
+        <parameter name="browser" value="ie"></parameter>
+        <parameter name="remoteAddress" value="http://10.0.205.61:6666/wd/hub"></parameter>
+        <classes>
+            <!--  
+            <class name="net.automation.selenium.java.distribution.scripts.NewApp"></class>
+            -->
+        </classes>
+    </test>
+</suite>
