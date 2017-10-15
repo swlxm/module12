@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Open Source China" parallel="tests" thread-count="5">
+    <test preserve-order="true" name="4.4">
+        <parameter name="deviceName" value="38325540E03C00EC" />
+        <parameter name="version" value="4.4" />
+        <parameter name="url" value="http://10.0.205.61:4723/wd/hub" />
+    	<classes>
+        	<!--  
+    	    <class name="net.automation.android.scripts.DialerTest"/>
+        	-->
+    	</classes>
+	</test>
+    <test preserve-order="true" name="o">
+        <parameter name="deviceName" value="38325540E03C00EC" />
+        <parameter name="version" value="4.4" />
+        <parameter name="url" value="http://10.0.205.61:4724/wd/hub" />
+    	<classes>
+    	    <class name="net.automation.android.scripts.DialerTest"/>
+        	<!--  
+        	-->
+    	</classes>
+	</test>
+</suite>
