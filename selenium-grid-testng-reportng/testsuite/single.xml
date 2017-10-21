@@ -11,7 +11,8 @@
     <parameter name="url" value="${url}"></parameter>
     <parameter name="username" value="${username}"></parameter>
     <parameter name="browser" value="${browser}"></parameter>
-    <test name="SmokeTest">
+    <parameter name="remoteAddress" value=""></parameter>
+    <test name="chrome">
         <classes>
             <class name="net.automation.selenium.java.distribution.scripts.SomeScript"></class>
         <!-- 
