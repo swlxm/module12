@@ -1,12 +1,6 @@
 *.log
-
 *.classpath
 *.project
 /test-output/
-
 /target/
-
-
 /doc/
-
-/.settings/

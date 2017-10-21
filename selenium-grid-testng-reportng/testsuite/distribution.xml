@@ -8,8 +8,8 @@
         <listener class-name="net.automation.selenium.java.distribution.listener.RetryListener"></listener>
     </listeners>
     
-    <parameter name="url" value="https://github.com/"></parameter>
-    <parameter name="username" value="swlxm"></parameter>
+    <parameter name="url" value="${url}"></parameter>
+    <parameter name="username" value="${username}"></parameter>
     <test name="chrome">
         <parameter name="browser" value="chrome"></parameter>
         <parameter name="remoteAddress" value="http://10.0.205.61:5555/wd/hub"></parameter>

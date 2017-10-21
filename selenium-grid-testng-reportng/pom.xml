@@ -68,12 +68,32 @@
 	        <artifactId>maven-surefire-plugin</artifactId>
 	        <version>2.20.1</version>
 	        <configuration>
+	        	<systemPropertyVariables>
+	        		<browser>${Browser}</browser>
+	        		<url>${URL}</url>
+	        		<username>${User Name}</username>
+	        	</systemPropertyVariables>
 	          <suiteXmlFiles>
-	            <suiteXmlFile>testsuite/distribution.xml</suiteXmlFile>
+	            <suiteXmlFile>${testngXmlFile}</suiteXmlFile>
 	          </suiteXmlFiles>
 	        </configuration>
   			
   		</plugin>
   	</plugins>
   </build>
+  
+  <profiles>
+  	<profile>
+  		<id>distribution</id>
+  		<properties>
+	  		<testngXmlFile>testsuite/distribution.xml</testngXmlFile>
+  		</properties>
+  	</profile>
+  	<profile>
+  		<id>single</id>
+  		<properties>
+  			<testngXmlFile>testsuite/single.xml</testngXmlFile>
+  		</properties>
+  	</profile>
+  </profiles>
 </project>
