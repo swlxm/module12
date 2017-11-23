@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="distribution" parallel="tests" thread-count="5">
+<suite name="single" parallel="tests" thread-count="5">
     <listeners>
         <listener class-name="org.uncommons.reportng.HTMLReporter"></listener>
         <listener class-name="net.automation.selenium.java.distribution.listener.TestListener"></listener>
