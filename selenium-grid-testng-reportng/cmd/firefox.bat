@@ -1,0 +1,1 @@
+java -Dwebdriver.gecko.driver=geckodriver.exe -jar "D:\git\selenium-grid-testng-reportng\cmd\selenium-server-standalone-3.4.0.jar" -role node -port 6666 -hub "http://192.168.43.56:4444/grid/register" -browser "browserName=firefox,maxInstances=5"

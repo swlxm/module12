@@ -1,1 +1,1 @@
-java -Dwebdriver.chrome.driver=chromedriver.exe -jar selenium-server-standalone-3.4.0.jar -role node -hub http://10.0.205.61:4444/grid/register -browser browserName=chrome,maxInstances=5
+java -Dwebdriver.chrome.driver=chromedriver.exe -jar "D:\git\selenium-grid-testng-reportng\cmd\selenium-server-standalone-3.4.0.jar" -role node -hub "http://192.168.43.56:4444/grid/register" -browser "browserName=chrome,maxInstances=5"

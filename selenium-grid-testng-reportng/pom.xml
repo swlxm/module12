@@ -84,12 +84,6 @@
   
   <profiles>
   	<profile>
-  		<id>distribution</id>
-  		<properties>
-	  		<testngXmlFile>testsuite/distribution.xml</testngXmlFile>
-  		</properties>
-  	</profile>
-  	<profile>
   		<id>single</id>
   		<properties>
   			<testngXmlFile>testsuite/single.xml</testngXmlFile>

@@ -1,1 +1,1 @@
-java -jar selenium-server-standalone-3.4.0.jar -role hub
+java -jar "D:\git\selenium-grid-testng-reportng\cmd\selenium-server-standalone-3.4.0.jar" -role hub
