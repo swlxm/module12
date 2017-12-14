@@ -1,4 +1,4 @@
-package net.automation.android.scripts;
+package net.automation.android.scripts.settings;
 
 import java.net.URL;
 import java.util.List;
@@ -18,17 +18,11 @@ import io.appium.java_client.android.AndroidKeyCode;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.remote.MobilePlatform;
+import net.automation.android.scripts.AppiumTestCase;
 import net.automation.android.util.AndroidConstants;
 
-public class NotificationTest extends AppiumTestCase {
-	protected static AndroidDriver<AndroidElement> driver;
-	
-	@BeforeClass
-	@Parameters({"deviceName", "version", "url"})
-	public void setUp(String deviceName, String version, String url) throws Exception {
-		super.setUp(deviceName, version, "com.android.settings", ".Settings", url);
-	}
-	
+public class NotificationTest extends SettingsTestCase {
+
 	@Test
 	public void testSettings() throws Exception {
 		driver.openNotifications();
@@ -57,11 +51,5 @@ public class NotificationTest extends AppiumTestCase {
 		}
 		driver.longPressKeyCode(AndroidKeyCode.BACK);
 		driver.longPressKeyCode(AndroidKeyCode.BACK);
-	}
-	
-	@AfterClass
-	public void teardown() {
-		driver.quit();
-		
 	}
 }

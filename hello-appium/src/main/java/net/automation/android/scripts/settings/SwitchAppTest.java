@@ -1,4 +1,4 @@
-package net.automation.android.scripts;
+package net.automation.android.scripts.settings;
 
 import java.util.List;
 import org.testng.annotations.AfterClass;
@@ -10,15 +10,10 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.android.AndroidKeyCode;
+import net.automation.android.scripts.AppiumTestCase;
 import net.automation.android.util.AndroidConstants;
 
-public class SwitchAppTest extends AppiumTestCase {
-	
-	@BeforeClass
-	@Parameters({"deviceName", "version", "url"})
-	public void setUp(String deviceName, String version, String url) throws Exception {
-		super.setUp(deviceName, version, "com.android.settings", ".Settings", url);
-	}
+public class SwitchAppTest extends SettingsTestCase {
 	
 	@Test
 	public void testSwitchApp() throws Exception {
@@ -52,9 +47,4 @@ public class SwitchAppTest extends AppiumTestCase {
 		frametitle.click();
 	}
 	
-	@AfterClass
-	public void teardown() {
-		driver.quit();
-		
-	}
 }

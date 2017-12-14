@@ -1,4 +1,4 @@
-package net.automation.android.scripts;
+package net.automation.android.scripts.dialer;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -7,15 +7,10 @@ import org.testng.annotations.Test;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import net.automation.android.scripts.AppiumTestCase;
 import net.automation.android.util.AndroidConstants;
 
-public class DialerTest extends AppiumTestCase {
-	
-	@BeforeClass
-	@Parameters({"deviceName", "version", "url"})
-	public void setUp(String deviceName, String version, String url) throws Exception {
-		super.setUp(deviceName, version, "com.android.dialer", ".DialtactsActivity", url);
-	}
+public class DialerTest extends DialerTestCase {
 	
 	@Test
 	public void testDialer() throws Exception {
@@ -31,9 +26,4 @@ public class DialerTest extends AppiumTestCase {
         driver.findElementByAccessibilityId("end").click();
 	}
 	
-	@AfterClass
-	public void tearDown() throws Exception {
-		super.tearDown();
-		
-	}
 }

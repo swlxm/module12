@@ -2,6 +2,7 @@ package net.automation.android.scripts;
 
 import java.util.List;
 
+import org.openqa.selenium.Capabilities;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
@@ -18,12 +19,14 @@ import net.automation.android.util.AndroidConstants;
 public class SplitUITest extends AppiumTestCase {
 	
 	@BeforeClass
-	@Parameters({"deviceName", "version", "url"})
-	public void setUp(String deviceName, String version, String url) throws Exception {
+	@Parameters({"port"})
+	public void setUp(String port) throws Exception {
+		Capabilities capa = driver.getCapabilities();
+		String version = capa.getVersion();
 		if(version.startsWith("7.1.1"))
-			super.setUp(deviceName, version, "com.google.android.dialer", ".extensions.GoogleDialtactsActivity", url);
+			super.setUp(port, "com.google.android.dialer", ".extensions.GoogleDialtactsActivity");
 		else
-			super.setUp(deviceName, version, "com.android.dialer", ".DialtactsActivity", url);
+			super.setUp(port, "com.android.dialer", ".DialtactsActivity");
 	}
 	
 	@SuppressWarnings("unused")

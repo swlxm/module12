@@ -1,1 +1,0 @@
-appium -p 4723 --nodeconfig 4723.json
