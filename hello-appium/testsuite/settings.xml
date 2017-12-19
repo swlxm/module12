@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="appium" parallel="tests" thread-count="5">
+    	<!-- 
+    	-->
+    <test preserve-order="true" name="emulator-5554">
+    	<parameter name="port" value="4723" />
+    	<parameter name="bp_port" value="4724" />
+    	<parameter name="chrome_port" value="9515" />
+    	<classes>
+    	    <class name="net.automation.android.scripts.settings.NotificationTest"/>
+    	    <class name="net.automation.android.scripts.settings.SwitchAppTest"/>
+    	</classes>
+	</test>
+        	<!--  
+        	-->
+    <test preserve-order="true" name="emulator-5556">
+    	<parameter name="port" value="4725" />
+    	<parameter name="bp_port" value="4726" />
+    	<parameter name="chrome_port" value="9516" />
+    	<classes>
+    	    <class name="net.automation.android.scripts.settings.NotificationTest"/>
+    	    <class name="net.automation.android.scripts.settings.SwitchAppTest"/>
+    	</classes>
+	</test>
+    <!-- 
+    <test preserve-order="true" name="c1e43588">
+    	<parameter name="port" value="4727" />
+    	<parameter name="bp_port" value="4728" />
+    	<parameter name="chrome_port" value="9517" />
+    	<classes>
+    	    <class name="net.automation.android.scripts.wechat.WechatTest" />
+    	</classes>
+	</test>
+    -->
+</suite>
