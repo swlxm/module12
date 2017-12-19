@@ -84,9 +84,15 @@
   
   <profiles>
   	<profile>
-  		<id>single</id>
+  		<id>suite1</id>
   		<properties>
-  			<testngXmlFile>testsuite/single.xml</testngXmlFile>
+  			<testngXmlFile>testsuite/suite1.xml</testngXmlFile>
+  		</properties>
+  	</profile>
+  	<profile>
+  		<id>suite2</id>
+  		<properties>
+  			<testngXmlFile>testsuite/suite2.xml</testngXmlFile>
   		</properties>
   	</profile>
   </profiles>
