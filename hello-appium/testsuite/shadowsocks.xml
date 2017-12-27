@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="appium" parallel="tests" thread-count="5">
+    	<!-- 
+    	-->
+    <test preserve-order="true" name="emulator-5556">
+    	<parameter name="port" value="4725" />
+    	<classes>
+    	    <class name="net.automation.mobile.scripts.shadowsocks.AddProfileTest"/>
+    	</classes>
+	</test>
+</suite>
