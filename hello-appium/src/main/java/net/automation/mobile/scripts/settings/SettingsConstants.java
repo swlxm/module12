@@ -1,4 +1,4 @@
-package net.automation.mobile.scripts.settings.android;
+package net.automation.mobile.scripts.settings;
 
 import net.automation.mobile.util.AppiumConstants;
 

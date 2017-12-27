@@ -4,7 +4,12 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class StartAppiumServer {
+
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub

@@ -1,4 +1,4 @@
-package net.automation.mobile.scripts.settings.android;
+package net.automation.mobile.scripts.settings;
 
 import java.util.List;
 import org.testng.annotations.AfterClass;

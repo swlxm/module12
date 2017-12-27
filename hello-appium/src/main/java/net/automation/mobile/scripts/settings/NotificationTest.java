@@ -1,4 +1,4 @@
-package net.automation.mobile.scripts.settings.android;
+package net.automation.mobile.scripts.settings;
 
 import java.net.URL;
 import java.util.List;

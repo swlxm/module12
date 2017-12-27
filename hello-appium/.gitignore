@@ -1,6 +1,7 @@
 *.log
 *.classpath
 *.project
+.settings/org.eclipse.jdt.core.prefs
 /target/
-
+/.settings/
 /test-output/
