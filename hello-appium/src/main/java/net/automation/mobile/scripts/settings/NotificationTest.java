@@ -28,7 +28,7 @@ public class NotificationTest extends AppiumTestCase implements SettingsConstant
 	@BeforeClass
 	@Parameters({"port"})
 	public void setUp(String port) throws Exception {
-		super.setUp(port, PACKAGE_NAME, ACTIVITY_NAME);
+		super.setUp(port, APP_PACKAGE, APP_ACTIVITY);
 	}
 	
 	@AfterClass

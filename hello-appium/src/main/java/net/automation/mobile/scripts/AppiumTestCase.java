@@ -14,8 +14,11 @@ import org.slf4j.LoggerFactory;
 import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.Reporter;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -31,17 +34,19 @@ public class AppiumTestCase implements AppiumConstants {
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public AndroidDriver<AndroidElement> driver;
+    public static AndroidDriver<AndroidElement> driver;
     
     protected int x_screen, y_screen;
 
-    protected void setUp(String port, String appPackage, String appActivity) {
+    @BeforeTest
+    @Parameters({"port", "app_package", "app_activity"})
+    public void setUp(String port, String app_package, String app_activity) {
     	try {
 	        // set up appium
 	        DesiredCapabilities capabilities = new DesiredCapabilities();
 	        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
-	        capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, appPackage);
-	        capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, appActivity);
+	        capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, app_package);
+	        capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, app_activity);
 	        driver = new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:" + port + "/wd/hub"), capabilities);
 	        sync(driver);
 	        x_screen = driver.manage().window().getSize().width;
@@ -53,7 +58,8 @@ public class AppiumTestCase implements AppiumConstants {
 		}
     }
 
-    protected void tearDown() throws Exception {
+    @AfterTest
+    public void tearDown() throws Exception {
         driver.quit();
     }
 
@@ -75,10 +81,13 @@ public class AppiumTestCase implements AppiumConstants {
 	@AfterMethod(alwaysRun = true)
 	public void takeScreenShot(ITestResult result) {
 		if(result.getStatus() == 2) {
+			String date = new Date().toString();
+			date = date.replace(" ", "_");
+			date = date.replace(":", "_");
 			ITestNGMethod method = result.getMethod();
 			String testClassName = result.getInstanceName();
 			String screenshotRootPath = PROJECT_ROOT_PATH + FILE_SEPARATOR + "test-output\\Screenshots";
-			String screenshotName = method.getMethodName() + "_" + driver.getRemoteAddress().getPort() + ".png";
+			String screenshotName = method.getMethodName() + "_" + driver.getRemoteAddress().getPort() + "_" + date + ".png";
 			try {
 				File screenShotFolder = new File(screenshotRootPath);
 				if (!screenShotFolder.exists()) {
@@ -93,9 +102,9 @@ public class AppiumTestCase implements AppiumConstants {
 				String absolute = targetFile.getAbsolutePath();
 				String screenShot = absolute.replace('\\','/');
 				Reporter.setCurrentTestResult(result);
-				Reporter.log("<a href=\"../Screenshots/" + testClassName + "/" + screenshotName + "\"><p align=\"left\">Error screenshot at " + new Date()+ "</p>");
+				Reporter.log("<a href=\"../Screenshots/" + testClassName + "/" + screenshotName + "\"><p align=\"left\">Error screenshot at " + date + "</p>");
 //				Reporter.log("<a href=\"" + targetFile.getAbsoluteFile() + "\"><p align=\"left\">Error screenshot at " + new Date()+ "</p>");
-				Reporter.log("<p><img width=\"1024\" src=\"" + targetFile.getAbsoluteFile()  + "\" alt=\"screenshot at " + new Date()+ "\"/></p></a><br />"); 
+				Reporter.log("<p><img width=\"1024\" src=\"" + targetFile.getAbsoluteFile()  + "\" alt=\"screenshot at " + date + "\"/></p></a><br />"); 
 			} catch (Exception e) {
 				System.out.println("An exception occured while taking screenshot " + e.getCause());
 			}

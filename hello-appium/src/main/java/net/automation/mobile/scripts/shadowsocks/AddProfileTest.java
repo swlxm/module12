@@ -26,55 +26,52 @@ import net.automation.mobile.scripts.AppiumTestCase;
 import net.automation.mobile.util.AppiumConstants;
 import net.automation.mobile.util.AppiumDataProvider;
 import net.automation.mobile.util.AppiumException;
+import net.automation.mobile.util.CommonActions;
+import net.automation.mobile.util.DirectionEnum;
 
-public class AddProfileTest extends AppiumTestCase {
+public class AddProfileTest extends AppiumTestCase implements ShadowsocksConstants {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	@BeforeTest
-	@Parameters("port")
-	public void setUp(String port) throws Exception {
-		super.setUp(port, "com.github.shadowsocks", ".MainActivity");
+	private String device, port;
+	
+	@Parameters({"device", "port"})
+	public AddProfileTest(String device, String port) {
+		this.device = device;
+		this.port = port;
 	}
 	
-	@AfterTest
-	public void tearDown() throws Exception {
-		super.tearDown();
-	}
-
 	@Test(dataProvider="profile", dataProviderClass=AppiumDataProvider.class)
 	public void testAddProfile(String profileName, String server, String remotePort, String pwd, String encyptMethod) throws AppiumException {
 		try {
 			driver.findElementByXPath("//android.widget.TextView[@text='" + server + ":" + remotePort + "']");
-			logger.error("The profile [" + server + ":" + remotePort + "] already exists.");
-			throw new AppiumException("The profile [" + server + ":" + remotePort + "] already exists.");
+			logger.error("The profile [" + server + ":" + remotePort + "] on device [" + device + "] already exists.");
+			//The profile does already exist, throws exception
+			throw new AppiumException("The profile [" + server + ":" + remotePort + "] on device [" + device + "] already exists.");
 		} catch(NoSuchElementException ex) {
+			logger.info("Creating new profile [" + server + ":" + remotePort + "] on device [" + device + "] ...");
 		}
-		driver.findElementByAccessibilityId("Add Profile").click();
-		driver.findElementByXPath("//android.widget.TextView[@text='Manual Settings']").click();
-		driver.findElementByXPath("//android.widget.TextView[@text='Profile Name']").click();
-		driver.findElementByXPath("//android.widget.EditText[@resource-id='android:id/edit']").sendKeys(profileName);
-		driver.findElementByXPath("//android.widget.Button[@text='OK']").click();
-		driver.findElementByXPath("//android.widget.TextView[@text='Server']").click();
-		AndroidElement serverEdit = driver.findElementByXPath("//android.widget.EditText[@resource-id='android:id/edit']");
-		serverEdit.clear();
-		serverEdit.sendKeys(server);
-		driver.findElementByXPath("//android.widget.Button[@text='OK']").click();
-		driver.findElementByXPath("//android.widget.TextView[@text='Remote Port']").click();
-		Keyboard keyboard = driver.getKeyboard();
-		keyboard.sendKeys(remotePort);
-		driver.findElementByXPath("//android.widget.Button[@text='OK']").click();
-		driver.findElementByXPath("//android.widget.TextView[@text='Password']").click();
-		AndroidElement pwdEdit = driver.findElementByXPath("//android.widget.EditText[@resource-id='android:id/edit']");
-		pwdEdit.clear();
-		pwdEdit.sendKeys(pwd);
-		driver.findElementByXPath("//android.widget.Button[@text='OK']").click();
-		driver.findElementByXPath("//android.widget.TextView[@text='Encrypt Method']").click();
+		CommonActions.tap(driver.findElementByAccessibilityId(content_desc_add_profile));
+		CommonActions.tap(driver.findElementByXPath(xpath_textview_manual_settings));
+		CommonActions.tap(driver.findElementByXPath(xpath_textview_profile_name));
+		CommonActions.sendKeys(driver.findElementByXPath(xpath_textedit_edit), profileName);
+		CommonActions.tap(driver.findElementByXPath(xpath_button_ok));
+		CommonActions.tap(driver.findElementByXPath(xpath_textview_server));
+		CommonActions.sendKeys(driver.findElementByXPath(xpath_textedit_edit), server);
+		CommonActions.tap(driver.findElementByXPath(xpath_button_ok));
+		CommonActions.tap(driver.findElementByXPath(xpath_textview_remote_port));
+		CommonActions.sendKeys(driver.getKeyboard(), remotePort);
+		CommonActions.tap(driver.findElementByXPath(xpath_button_ok));
+		CommonActions.tap(driver.findElementByXPath(xpath_textview_password));
+		CommonActions.sendKeys(driver.findElementByXPath(xpath_textedit_edit), pwd);
+		CommonActions.tap(driver.findElementByXPath(xpath_button_ok));
+		CommonActions.tap(driver.findElementByXPath(xpath_textview_encrypt_method));
 		AndroidElement listView = driver.findElementByClassName("android.widget.ListView");
-		TouchAction t_action = new TouchAction(driver);
-		t_action.press(listView).moveTo(0, 200).release().perform();
-		driver.findElementByXPath("//android.widget.CheckedTextView[@text='" + encyptMethod + "']").click();
-		driver.findElementByAccessibilityId("Apply").click();
+		CommonActions.swipe(driver, listView, DirectionEnum.DOWN, y_screen/5);
+//		TouchAction t_action = new TouchAction(driver);
+//		t_action.press(listView).moveTo(0, 200).release().perform();
+		CommonActions.tap(driver.findElementByXPath("//android.widget.CheckedTextView[@text='" + encyptMethod + "']"));
+		CommonActions.tap(driver.findElementByAccessibilityId(content_desc_apply));
 		AndroidElement checkpoint = driver.findElementByXPath("//android.widget.TextView[@text='" + server + ":" + remotePort + "']");
 		Assert.assertNotNull(checkpoint);
 		logger.info("Create new profile successfully [" + profileName + server + remotePort + encyptMethod + "]");
