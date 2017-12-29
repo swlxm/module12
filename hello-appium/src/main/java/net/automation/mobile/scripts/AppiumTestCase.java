@@ -86,7 +86,7 @@ public class AppiumTestCase implements AppiumConstants {
 			date = date.replace(":", "_");
 			ITestNGMethod method = result.getMethod();
 			String testClassName = result.getInstanceName();
-			String screenshotRootPath = PROJECT_ROOT_PATH + FILE_SEPARATOR + "test-output\\Screenshots";
+			String screenshotRootPath = PROJECT_ROOT_PATH + FILE_SEPARATOR + "target\\surefire-reports\\screenshots";
 			String screenshotName = method.getMethodName() + "_" + driver.getRemoteAddress().getPort() + "_" + date + ".png";
 			try {
 				File screenShotFolder = new File(screenshotRootPath);
