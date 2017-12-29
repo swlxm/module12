@@ -30,20 +30,18 @@ public class CommonActions {
 
 		switch(direction.name()) {
 			case "UP":
-				t_action.press(element).moveTo(0, -duration);
+				t_action.press(element).moveTo(0, -duration).release().perform();
 				break;
 			case "DOWN":
-				t_action.press(element).moveTo(0, duration);
+				t_action.press(element).moveTo(0, duration).release().perform();
 				break;
 			case "LEFT":
-				t_action.press(element).moveTo(-duration, 0);
+				t_action.press(element).moveTo(-duration, 0).release().perform();
 				break;
 			case "RIGHT":
-				t_action.press(element).moveTo(duration, 0);
+				t_action.press(element).moveTo(duration, 0).release().perform();
 				break;
 		}
-		
-		t_action.release().perform();
 	}
 
 	public static void sendKeys(AndroidElement element, CharSequence keys) {

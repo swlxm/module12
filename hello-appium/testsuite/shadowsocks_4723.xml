@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="appium" parallel="tests" thread-count="5">
+	<listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    </listeners>
+	
+	<parameter name="app_package" value="com.github.shadowsocks" />
+	<parameter name="app_activity" value=".MainActivity" />
+   	<parameter name="device" value="emulator-5554" />
+   	<parameter name="port" value="4723" />
+    <test preserve-order="true" name="emulator-5554:4723">
+    	<classes>
+    	    <class name="net.automation.mobile.scripts.shadowsocks.RemoveProfileTest"/>
+    	    <class name="net.automation.mobile.scripts.shadowsocks.AddProfileTest"/>
+    	</classes>
+	</test>
+</suite>

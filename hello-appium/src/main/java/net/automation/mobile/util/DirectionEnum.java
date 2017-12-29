@@ -2,10 +2,10 @@ package net.automation.mobile.util;
 
 public enum DirectionEnum {
 
-	UP("Single line of text"),
-	DOWN("Rich Text"),
-	LEFT("Drop Down List"),
-	RIGHT("Check Box");
+	UP("UP"),
+	DOWN("DOWN"),
+	LEFT("LEFT"),
+	RIGHT("RIGHT");
 
 	private String direction;
 	

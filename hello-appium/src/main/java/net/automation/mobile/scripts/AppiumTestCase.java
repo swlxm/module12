@@ -36,9 +36,9 @@ public class AppiumTestCase implements AppiumConstants {
 
     public static AndroidDriver<AndroidElement> driver;
     
-    protected int x_screen, y_screen;
+    public static int x_screen, y_screen;
 
-    @BeforeTest
+    @BeforeSuite
     @Parameters({"port", "app_package", "app_activity"})
     public void setUp(String port, String app_package, String app_activity) {
     	try {
@@ -58,7 +58,7 @@ public class AppiumTestCase implements AppiumConstants {
 		}
     }
 
-    @AfterTest
+    @AfterSuite
     public void tearDown() throws Exception {
         driver.quit();
     }
