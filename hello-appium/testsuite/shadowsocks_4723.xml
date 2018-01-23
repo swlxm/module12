@@ -11,8 +11,8 @@
    	<parameter name="port" value="4723" />
     <test preserve-order="true" name="emulator-5554:4723">
     	<classes>
-    	    <class name="net.automation.mobile.scripts.shadowsocks.RemoveProfileTest"/>
-    	    <class name="net.automation.mobile.scripts.shadowsocks.AddProfileTest"/>
+    	    <class name="net.automation.mobile.android.shadowsocks.RemoveProfileTest"/>
+    	    <class name="net.automation.mobile.android.shadowsocks.AddProfileTest"/>
     	</classes>
 	</test>
 </suite>

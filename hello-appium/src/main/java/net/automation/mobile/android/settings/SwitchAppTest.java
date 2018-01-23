@@ -1,4 +1,4 @@
-package net.automation.mobile.scripts.settings;
+package net.automation.mobile.android.settings;
 
 import java.util.List;
 import org.testng.annotations.AfterClass;
@@ -10,10 +10,10 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.android.AndroidKeyCode;
-import net.automation.mobile.scripts.AppiumTestCase;
+import net.automation.mobile.android.AndroidTestCase;
 import net.automation.mobile.util.AppiumConstants;
 
-public class SwitchAppTest extends AppiumTestCase implements SettingsConstants {
+public class SwitchAppTest extends AndroidTestCase implements SettingsConstants {
 	
 	@BeforeClass
 	@Parameters({"port"})

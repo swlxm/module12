@@ -1,4 +1,4 @@
-package net.automation.mobile.scripts;
+package net.automation.mobile.ios;
 
 import java.io.File;
 import java.net.URL;
@@ -25,16 +25,18 @@ import org.testng.annotations.Parameters;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.remote.MobilePlatform;
 import net.automation.mobile.util.AppiumConstants;
 
-public class AppiumTestCase implements AppiumConstants {
+public class IOSTestCase implements AppiumConstants {
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public static AndroidDriver<AndroidElement> driver;
+    public static IOSDriver<IOSElement> driver;
     
     public static int x_screen, y_screen;
 
@@ -44,10 +46,10 @@ public class AppiumTestCase implements AppiumConstants {
     	try {
 	        // set up appium
 	        DesiredCapabilities capabilities = new DesiredCapabilities();
-	        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
+	        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.IOS);
 	        capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, app_package);
 	        capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, app_activity);
-	        driver = new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:" + port + "/wd/hub"), capabilities);
+	        driver = new IOSDriver<IOSElement>(new URL("http://127.0.0.1:" + port + "/wd/hub"), capabilities);
 	        sync(driver);
 	        x_screen = driver.manage().window().getSize().width;
 	        y_screen = driver.manage().window().getSize().height;
@@ -63,7 +65,7 @@ public class AppiumTestCase implements AppiumConstants {
         driver.quit();
     }
 
-	public void sync(AndroidDriver<AndroidElement> driver) {
+	public void sync(IOSDriver<IOSElement> driver) {
 		try {
 			driver.findElementByClassName("android.widget.ProgressBar");
 		} catch(Exception ex) {

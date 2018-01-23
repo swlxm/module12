@@ -1,4 +1,4 @@
-package net.automation.mobile.scripts.dialer;
+package net.automation.mobile.android.dialer;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import net.automation.mobile.scripts.AppiumTestCase;
+import net.automation.mobile.android.AndroidTestCase;
 import net.automation.mobile.util.AppiumConstants;
 
 public class DialerTest extends DialerTestCase {

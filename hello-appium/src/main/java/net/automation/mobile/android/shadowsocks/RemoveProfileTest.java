@@ -1,4 +1,4 @@
-package net.automation.mobile.scripts.shadowsocks;
+package net.automation.mobile.android.shadowsocks;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.slf4j.Logger;
@@ -8,13 +8,13 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import net.automation.mobile.scripts.AppiumTestCase;
+import net.automation.mobile.android.AndroidTestCase;
 import net.automation.mobile.util.AppiumAssert;
 import net.automation.mobile.util.AppiumDataProvider;
 import net.automation.mobile.util.AppiumException;
 import net.automation.mobile.util.CommonActions;
 
-public class RemoveProfileTest extends AppiumTestCase implements ShadowsocksConstants {
+public class RemoveProfileTest extends AndroidTestCase implements ShadowsocksConstants {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	

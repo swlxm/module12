@@ -1,4 +1,4 @@
-package net.automation.mobile.scripts.dialer;
+package net.automation.mobile.android.wechat;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
@@ -8,14 +8,14 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
-import net.automation.mobile.scripts.AppiumTestCase;
+import net.automation.mobile.android.AndroidTestCase;
 
-public class DialerTestCase extends AppiumTestCase {
+public class WechatTestCase extends AndroidTestCase {
 
 	@BeforeTest
 	@Parameters({"port"})
 	public void setUp(String port) throws Exception {
-		super.setUp(port, "com.android.settings", ".Settings");
+		super.setUp(port, "com.tencent.mm", ".ui.LauncherUI");
 	}
 	
 	@AfterTest

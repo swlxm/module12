@@ -1,4 +1,4 @@
-package net.automation.mobile.scripts.wechat;
+package net.automation.mobile.android.smzdm;
 
 import java.util.List;
 
@@ -12,11 +12,10 @@ import org.testng.annotations.Test;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import net.automation.mobile.scripts.AppiumTestCase;
-import net.automation.mobile.scripts.smzdm.SMZDMTestCase;
+import net.automation.mobile.android.AndroidTestCase;
 import net.automation.mobile.util.AppiumConstants;
 
-public class WechatTest extends WechatTestCase {
+public class SMZDMTest extends SMZDMTestCase {
 	
 	
 	@Test

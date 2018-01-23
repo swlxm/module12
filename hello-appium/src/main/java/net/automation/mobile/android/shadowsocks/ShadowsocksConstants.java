@@ -1,4 +1,4 @@
-package net.automation.mobile.scripts.shadowsocks;
+package net.automation.mobile.android.shadowsocks;
 
 import net.automation.mobile.util.AppiumConstants;
 

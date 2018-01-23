@@ -1,6 +1,7 @@
-package net.automation.mobile.scripts.settings;
+package net.automation.mobile.android.settings;
 
 import java.net.URL;
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -20,10 +21,10 @@ import io.appium.java_client.android.AndroidKeyCode;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.remote.MobilePlatform;
-import net.automation.mobile.scripts.AppiumTestCase;
+import net.automation.mobile.android.AndroidTestCase;
 import net.automation.mobile.util.AppiumConstants;
 
-public class NotificationTest extends AppiumTestCase implements SettingsConstants {
+public class NotificationTest extends AndroidTestCase implements SettingsConstants {
 	
 	@BeforeClass
 	@Parameters({"port"})
@@ -44,7 +45,7 @@ public class NotificationTest extends AppiumTestCase implements SettingsConstant
 		Thread.sleep(SHORT_WAIT);
 		AndroidElement seek = driver.findElementByAndroidUIAutomator("text(\"Display brightness\")");
         TouchAction action = new TouchAction(driver);
-        action.press(seek).moveTo(200, 0).waitAction(1000).moveTo(-400, 0).waitAction(1000).release().perform();
+        action.press(seek).moveTo(200, 0).waitAction(Duration.ofSeconds(SHORT_WAIT)).moveTo(-400, 0).waitAction(Duration.ofSeconds(SHORT_WAIT)).release().perform();
         
         //switch bluetooth
 		List<AndroidElement> buttons = driver.findElementsByClassName("android.widget.Button");

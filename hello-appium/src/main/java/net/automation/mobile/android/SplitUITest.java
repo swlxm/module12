@@ -1,5 +1,6 @@
-package net.automation.mobile.scripts;
+package net.automation.mobile.android;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.Capabilities;
@@ -12,11 +13,12 @@ import org.testng.annotations.Test;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.android.AndroidKeyCode;
 import net.automation.mobile.util.AppiumConstants;
 
-public class SplitUITest extends AppiumTestCase {
+public class SplitUITest extends AndroidTestCase {
 	
 	@BeforeClass
 	@Parameters({"port"})
@@ -47,7 +49,10 @@ public class SplitUITest extends AppiumTestCase {
 		Thread.sleep(AppiumConstants.SHORT_WAIT);
 		
 		//split ui
-		driver.startActivity("com.android.settings", ".Settings");
+		Activity activity = new Activity("com.android.settings", ".Settings");
+		activity.setAppWaitPackage("com.android.settings");
+		activity.setAppWaitActivity(".Settings");
+		driver.startActivity(activity);
 		Assert.assertNotNull(driver.findElementByAndroidUIAutomator("text(\"设置\")"), "Start setting activity successfully.");
     	TouchAction action = new TouchAction(driver);
 		driver.pressKeyCode(AndroidKeyCode.KEYCODE_APP_SWITCH);
@@ -62,9 +67,9 @@ public class SplitUITest extends AppiumTestCase {
 		Reporter.log("Drag and drop app " + title + " to split the screen.", true);
 		if(x_screen < y_screen) {
 			int y_offset = frametitle.getLocation().y - firstFrame.getLocation().y + firstFrame.getLocation().y*3/4;
-			action.longPress(frametitle).waitAction(2000).moveTo(0, -y_offset).waitAction(2000).release().perform();
+			action.longPress(frametitle).waitAction(Duration.ofSeconds(MIDDLE_WAIT)).moveTo(0, -y_offset).waitAction(Duration.ofSeconds(MIDDLE_WAIT)).release().perform();
 		} else {
-			action.longPress(frametitle).waitAction(2000).moveTo(-x_screen*2/5, 0).waitAction(2000).release().perform();
+			action.longPress(frametitle).waitAction(Duration.ofSeconds(MIDDLE_WAIT)).moveTo(-x_screen*2/5, 0).waitAction(Duration.ofSeconds(MIDDLE_WAIT)).release().perform();
 		}
         Thread.sleep(AppiumConstants.SHORT_WAIT);
         
