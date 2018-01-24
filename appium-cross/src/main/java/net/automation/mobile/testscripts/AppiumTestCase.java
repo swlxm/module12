@@ -39,7 +39,7 @@ public class AppiumTestCase implements AppiumConstants {
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public static AppiumDriver<MobileElement> driver;
+    public static AppiumDriver<? extends MobileElement> driver;
     
     public static int x_screen, y_screen;
 
@@ -65,7 +65,7 @@ public class AppiumTestCase implements AppiumConstants {
         driver.quit();
     }
 
-	public void sync(AppiumDriver<?> driver) {
+	public void sync(AppiumDriver<? extends MobileElement> driver) {
 		try {
 			driver.findElementByClassName("android.widget.ProgressBar");
 		} catch(Exception ex) {

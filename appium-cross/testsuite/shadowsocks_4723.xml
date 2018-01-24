@@ -7,10 +7,10 @@
 	
 	<parameter name="app_package" value="com.github.shadowsocks" />
 	<parameter name="app_activity" value=".MainActivity" />
-   	<parameter name="device" value="emulator-5554" />
+   	<parameter name="device" value="Nexus 5X" />
    	<parameter name="port" value="4723" />
    	<parameter name="platform" value="android"></parameter>
-    <test preserve-order="true" name="emulator-5554:4723">
+    <test preserve-order="true" name="Nexus 5X:4723">
     	<classes>
     	    <class name="net.automation.mobile.testscripts.shadowsocks.RemoveProfileTest"/>
     	    <class name="net.automation.mobile.testscripts.shadowsocks.AddProfileTest"/>

@@ -1,1 +1,1 @@
-appium -p 4723 -bp 4724 --chromedriver-port 9515 -dc "{\"udid\":\"emulator-5554\", \"noReset\":true, \"deviceName\":\"emulator-5554\", \"platformVersion\":\"7.1.1\"}"
+appium -p 4723 -bp 4724 --chromedriver-port 9515 -dc "{\"udid\":\"emulator-5554\", \"noReset\":true, \"deviceName\":\"Nexus 5X\", \"platformVersion\":\"7.1.1\"}"
