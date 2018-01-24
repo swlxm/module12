@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="appium" parallel="tests" thread-count="5">
+	<listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    </listeners>
+	
+	<parameter name="is_browser_testing" value="true"></parameter>
+	<parameter name="app_package" value="" />
+	<parameter name="app_activity" value="" />
+   	<parameter name="device" value="Nexus 5X" />
+   	<parameter name="port" value="4723" />
+   	<parameter name="platform" value="android"></parameter>
+    <test preserve-order="true" name="Nexus 5X:4723">
+    	<classes>
+    	    <class name="net.automation.mobile.testscripts.browser.LoginTest"/>
+    	</classes>
+	</test>
+</suite>
