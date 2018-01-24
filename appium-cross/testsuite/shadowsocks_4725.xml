@@ -5,6 +5,7 @@
         <listener class-name="org.uncommons.reportng.HTMLReporter"/>
     </listeners>
 	
+	<parameter name="is_browser_testing" value="false"></parameter>
 	<parameter name="app_package" value="com.github.shadowsocks" />
 	<parameter name="app_activity" value=".MainActivity" />
    	<parameter name="device" value="Nexus 6P" />

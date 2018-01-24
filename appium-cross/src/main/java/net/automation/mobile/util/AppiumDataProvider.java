@@ -13,4 +13,9 @@ public class AppiumDataProvider {
 	public static Object[][] profileData() throws Exception {
 		return ExcelParser.getInstance().getTestData("Profiles.xlsx");
 	}
+
+	@DataProvider(name="login")
+	public static Object[][] loginData() throws Exception {
+		return ExcelParser.getInstance().getTestData("Accounts.xlsx");
+	}
 }

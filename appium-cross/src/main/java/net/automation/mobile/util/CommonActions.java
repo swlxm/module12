@@ -23,7 +23,6 @@ public class CommonActions {
 		try {
 			Thread.sleep(AppiumConstants.SHORT_WAIT);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
