@@ -1,6 +1,9 @@
-package net.automation.mobile.android.settings;
+package net.automation.mobile.testscripts.android;
 
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -8,40 +11,43 @@ import org.testng.annotations.Test;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.android.AndroidKeyCode;
-import net.automation.mobile.android.AndroidTestCase;
+import net.automation.mobile.testscripts.AppiumTestCase;
 import net.automation.mobile.util.AppiumConstants;
 
-public class SwitchAppTest extends AndroidTestCase implements SettingsConstants {
+public class SwitchAppTest extends AppiumTestCase implements SettingsConstants {
 	
-	@BeforeClass
-	@Parameters({"port"})
-	public void setUp(String port) throws Exception {
-		super.setUp(port, APP_PACKAGE, APP_ACTIVITY);
-	}
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	private AndroidDriver<AndroidElement> androidDriver = null;
+	private String device, port;
 	
-	@AfterClass
-	public void tearDown() throws Exception {
-		super.tearDown();
+	@Parameters({"device", "port"})
+	public SwitchAppTest(String device, String port) {
+		this.device = device;
+		this.port = port;
 	}
 
 	@Test
 	public void testSwitchApp() throws Exception {
-    	TouchAction action = new TouchAction(driver);
-		driver.longPressKeyCode(AndroidKeyCode.KEYCODE_APP_SWITCH);
+		androidDriver = (AndroidDriver<AndroidElement>)driver;
+
+		
+		TouchAction action = new TouchAction(androidDriver);
+		androidDriver.longPressKeyCode(AndroidKeyCode.KEYCODE_APP_SWITCH);
         Thread.sleep(AppiumConstants.SHORT_WAIT);
         
-        AndroidElement el = driver.findElementByClassName("android.widget.ScrollView");
+        AndroidElement el = androidDriver.findElementByClassName("android.widget.ScrollView");
 		List<MobileElement> frames = el.findElementsByAndroidUIAutomator("childSelector(new UiSelector().className(\"android.widget.FrameLayout\"))");
 		MobileElement frame = frames.get(frames.size()-2);
 		MobileElement frametitle = frame.findElementByClassName("android.widget.TextView");
 		String title = frametitle.getText();
 		frametitle.click();
         Thread.sleep(MIDDLE_WAIT);
-		driver.pressKeyCode(AndroidKeyCode.KEYCODE_APP_SWITCH);
+		androidDriver.pressKeyCode(AndroidKeyCode.KEYCODE_APP_SWITCH);
 		Thread.sleep(SHORT_WAIT);
-        el = driver.findElementByClassName("android.widget.ScrollView");
+        el = androidDriver.findElementByClassName("android.widget.ScrollView");
 		frames = el.findElementsByAndroidUIAutomator("childSelector(new UiSelector().className(\"android.widget.FrameLayout\"))");
 		frame = frames.get(frames.size()-2);
 		frametitle = frame.findElementByClassName("android.widget.TextView");
@@ -50,7 +56,7 @@ public class SwitchAppTest extends AndroidTestCase implements SettingsConstants 
 		int y_offset = frame.getSize().height;
 		action.press((int)(x_screen/2), y_frame + 10).moveTo(0, y_offset).release().perform();
         Thread.sleep(MIDDLE_WAIT);
-        el = driver.findElementByClassName("android.widget.ScrollView");
+        el = androidDriver.findElementByClassName("android.widget.ScrollView");
 		frames = el.findElementsByAndroidUIAutomator("childSelector(new UiSelector().className(\"android.widget.FrameLayout\"))");
 		frame = frames.get(0);
 		frametitle = frame.findElementByClassName("android.widget.TextView");

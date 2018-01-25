@@ -39,6 +39,8 @@ public class AppiumTestCase implements AppiumConstants {
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+	public static int x_screen, y_screen;
+
     public static AppiumDriver<? extends MobileElement> driver;
     
 	@SuppressWarnings("unchecked")
@@ -49,7 +51,10 @@ public class AppiumTestCase implements AppiumConstants {
 	        // set up appium
 	        driver = (AppiumDriver<MobileElement>) AppiumDriverBuilder.build(platform, port, app_package, app_activity);
 	        sync(driver);
-			Thread.sleep(SHORT_WAIT);
+	        
+	        x_screen = driver.manage().window().getSize().width;
+	        y_screen = driver.manage().window().getSize().height;
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

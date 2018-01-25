@@ -1,10 +1,12 @@
-package net.automation.mobile.android.settings;
+package net.automation.mobile.testscripts.android;
 
 import java.net.URL;
 import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
@@ -21,49 +23,51 @@ import io.appium.java_client.android.AndroidKeyCode;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.remote.MobilePlatform;
-import net.automation.mobile.android.AndroidTestCase;
+import net.automation.mobile.testscripts.AppiumTestCase;
 import net.automation.mobile.util.AppiumConstants;
 
-public class NotificationTest extends AndroidTestCase implements SettingsConstants {
+public class NotificationTest extends AppiumTestCase implements SettingsConstants {
 	
-	@BeforeClass
-	@Parameters({"port"})
-	public void setUp(String port) throws Exception {
-		super.setUp(port, APP_PACKAGE, APP_ACTIVITY);
-	}
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	private AndroidDriver<AndroidElement> androidDriver = null;
+	private String device, port;
 	
-	@AfterClass
-	public void tearDown() throws Exception {
-		super.tearDown();
+	@Parameters({"device", "port"})
+	public NotificationTest(String device, String port) {
+		this.device = device;
+		this.port = port;
 	}
 
 	@Test
 	public void testSettings() throws Exception {
-		driver.openNotifications();
+		
+		androidDriver = (AndroidDriver<AndroidElement>)driver;
+
+		androidDriver.openNotifications();
 		Thread.sleep(SHORT_WAIT);
-		driver.findElementByAccessibilityId("Open quick settings.").click();        
+		androidDriver.findElementByAccessibilityId("Open quick settings.").click();        
 		Thread.sleep(SHORT_WAIT);
-		AndroidElement seek = driver.findElementByAndroidUIAutomator("text(\"Display brightness\")");
-        TouchAction action = new TouchAction(driver);
+		AndroidElement seek = androidDriver.findElementByAndroidUIAutomator("text(\"Display brightness\")");
+        TouchAction action = new TouchAction(androidDriver);
         action.press(seek).moveTo(200, 0).waitAction(Duration.ofSeconds(SHORT_WAIT)).moveTo(-400, 0).waitAction(Duration.ofSeconds(SHORT_WAIT)).release().perform();
         
         //switch bluetooth
-		List<AndroidElement> buttons = driver.findElementsByClassName("android.widget.Button");
+		List<AndroidElement> buttons = androidDriver.findElementsByClassName("android.widget.Button");
 		for(AndroidElement button:buttons) {
 			String desc = button.getAttribute("name");
 			Reporter.log(desc, true);
 			if(desc.startsWith("Bluetooth")) {
 				button.click();
 				if(desc.startsWith("Bluetooth on")) {
-					driver.findElementByAndroidUIAutomator("text(\"ON\")").click();;
+					androidDriver.findElementByAndroidUIAutomator("text(\"ON\")").click();;
 				}
 				if(desc.startsWith("Bluetooth off")) {
-					driver.findElementByAndroidUIAutomator("text(\"DONE\")").click();;
+					androidDriver.findElementByAndroidUIAutomator("text(\"DONE\")").click();;
 				}
 				break;
 			}
 		}
-		driver.longPressKeyCode(AndroidKeyCode.BACK);
-		driver.longPressKeyCode(AndroidKeyCode.BACK);
+		androidDriver.longPressKeyCode(AndroidKeyCode.BACK);
+		androidDriver.longPressKeyCode(AndroidKeyCode.BACK);
 	}
 }
