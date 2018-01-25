@@ -43,14 +43,11 @@ public class AppiumTestCase implements AppiumConstants {
     
 	@SuppressWarnings("unchecked")
 	@BeforeSuite
-    @Parameters({"platform", "port", "is_browser_testing", "app_package", "app_activity"})
-    public void setUp(String platform, String port, String is_browser_testing, String app_package, String app_activity) {
-		boolean isBrowserTesting = false;
-		if(is_browser_testing.equalsIgnoreCase("true"))
-			isBrowserTesting = true;
+    @Parameters({"platform", "port", "app_package", "app_activity"})
+    public void setUp(String platform, String port, String app_package, String app_activity) {
     	try {
 	        // set up appium
-	        driver = (AppiumDriver<MobileElement>) AppiumDriverBuilder.build(platform, port, isBrowserTesting, app_package, app_activity);
+	        driver = (AppiumDriver<MobileElement>) AppiumDriverBuilder.build(platform, port, app_package, app_activity);
 	        sync(driver);
 			Thread.sleep(SHORT_WAIT);
 		} catch (Exception e) {
