@@ -1,6 +1,8 @@
 package net.automation.mobile.util;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Keyboard;
 import org.slf4j.Logger;
@@ -28,20 +30,25 @@ public class CommonActions {
 	}
 	
 	public static void swipe(AppiumDriver<? extends MobileElement> driver, MobileElement element, Enum<DirectionEnum> direction, int duration) {
-		TouchAction t_action = new TouchAction(driver);
-
+		TouchAction<?> t_action = new TouchAction<>(driver);
+		Dimension d = driver.manage().window().getSize();
+		int heigh = d.height;
+		int width = d.width;
+		Point center = element.getCenter();
+		int x = center.getX();
+		int y = center.getY();
 		switch(direction.name()) {
 			case "UP":
-				t_action.press(ElementOption.element(element)).moveTo(PointOption.point(0, -duration)).release().perform();
+				t_action.press(PointOption.point(x, y)).moveTo(PointOption.point(0, -duration)).release().perform();
 				break;
 			case "DOWN":
-				t_action.press(element).moveTo(0, duration).release().perform();
+				t_action.press(PointOption.point(x, y)).moveTo(PointOption.point(0, duration)).release().perform();
 				break;
 			case "LEFT":
-				t_action.press(element).moveTo(-duration, 0).release().perform();
+				t_action.press(PointOption.point(x, y)).moveTo(PointOption.point(-duration, 0)).release().perform();
 				break;
 			case "RIGHT":
-				t_action.press(element).moveTo(duration, 0).release().perform();
+				t_action.press(PointOption.point(x, y)).moveTo(PointOption.point(duration, 0)).release().perform();
 				break;
 		}
 	}

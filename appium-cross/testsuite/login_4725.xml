@@ -9,11 +9,11 @@
 	<parameter name="app_package" value="" />
 	<parameter name="app_activity" value="" />
    	<parameter name="device" value="Nexus 5X" />
-   	<parameter name="port" value="4723" />
+   	<parameter name="port" value="4725" />
    	<parameter name="platform" value="android"></parameter>
-    <test preserve-order="true" name="Nexus 5X:4723">
+    <test preserve-order="true" name="Nexus 6P:4725">
     	<classes>
-    	    <class name="net.automation.mobile.testscripts.browser.LoginTest"/>
+    	    <class name="net.automation.mobile.testscripts.browser.SearchTest"/>
     	</classes>
 	</test>
 </suite>

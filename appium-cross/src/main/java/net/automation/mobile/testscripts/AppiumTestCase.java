@@ -41,8 +41,6 @@ public class AppiumTestCase implements AppiumConstants {
 
     public static AppiumDriver<? extends MobileElement> driver;
     
-    public static int x_screen, y_screen;
-
 	@SuppressWarnings("unchecked")
 	@BeforeSuite
     @Parameters({"platform", "port", "is_browser_testing", "app_package", "app_activity"})
@@ -54,8 +52,6 @@ public class AppiumTestCase implements AppiumConstants {
 	        // set up appium
 	        driver = (AppiumDriver<MobileElement>) AppiumDriverBuilder.build(platform, port, isBrowserTesting, app_package, app_activity);
 	        sync(driver);
-//	        x_screen = driver.manage().window().getSize().width;
-//	        y_screen = driver.manage().window().getSize().height;
 			Thread.sleep(SHORT_WAIT);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

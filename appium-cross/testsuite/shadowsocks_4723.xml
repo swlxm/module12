@@ -13,6 +13,8 @@
    	<parameter name="platform" value="android"></parameter>
     <test preserve-order="true" name="Nexus 5X:4723">
     	<classes>
+    	<!-- 
+    	 -->
     	    <class name="net.automation.mobile.testscripts.shadowsocks.RemoveProfileTest"/>
     	    <class name="net.automation.mobile.testscripts.shadowsocks.AddProfileTest"/>
     	</classes>

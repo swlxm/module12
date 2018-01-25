@@ -68,7 +68,7 @@ public class AddProfileTest extends AppiumTestCase implements ShadowsocksConstan
 		CommonActions.tap(androidDriver.findElementByXPath(xpath_button_ok));
 		CommonActions.tap(androidDriver.findElementByXPath(xpath_textview_encrypt_method));
 		MobileElement listView = androidDriver.findElementByClassName("android.widget.ListView");
-		int duration = y_screen/5;
+		int duration = driver.manage().window().getSize().height/10;
 		CommonActions.swipe(driver, listView, DirectionEnum.DOWN, duration);
 //		TouchAction t_action = new TouchAction(driver);
 //		t_action.press(listView).moveTo(0, 200).release().perform();
