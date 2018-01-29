@@ -3,7 +3,9 @@ package net.automation.mobile.util;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.Parameters;
 
 import io.appium.java_client.AppiumDriver;
@@ -38,11 +40,41 @@ public class AppiumDriverBuilder {
 			capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, app_package);
 			capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, app_activity);
 			return new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:" + port + "/wd/hub"), capabilities);
-		}
-		if(platform.equalsIgnoreCase("ios"))
+		} else if(platform.equalsIgnoreCase("ios")) {
 			capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.IOS);
 			capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, app_package);
 			capabilities.setCapability(IOSMobileCapabilityType.APP_NAME, app_activity);
 			return new IOSDriver<IOSElement>(new URL("http://127.0.0.1:" + port + "/wd/hub"), capabilities);
+		} else {
+			capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
+			capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, app_package);
+			capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, app_activity);
+			return new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:" + port + "/wd/hub"), capabilities);
+		}
+	}
+	
+	/**
+	 * for browser testing
+	 * @param platform
+	 * @param port
+	 * @return
+	 * @throws Exception 
+	 */
+	public static WebDriver buildWebDriver(String platform, String port) throws Exception {
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+
+		if(platform.equalsIgnoreCase("android")) {
+			capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
+			capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.CHROME);
+			return new RemoteWebDriver(new URL("http://127.0.0.1:" + port + "/wd/hub"), capabilities);
+		} else if(platform.equalsIgnoreCase("ios")) {
+			capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.IOS);
+			capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.SAFARI);
+			return new RemoteWebDriver(new URL("http://127.0.0.1:" + port + "/wd/hub"), capabilities);
+		} else {
+			capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
+			capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.CHROME);
+			return new RemoteWebDriver(new URL("http://127.0.0.1:" + port + "/wd/hub"), capabilities);
+		}
 	}
 }
