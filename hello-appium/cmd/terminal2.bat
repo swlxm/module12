@@ -1,1 +1,0 @@
-appium -p 4725 -bp 4726 --chromedriver-port 9516 -dc "{\"udid\":\"emulator-5556\", \"noReset\":true, \"deviceName\":\"emulator-5556\", \"platformVersion\":\"7.1.1\"}"

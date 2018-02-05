@@ -1,3 +1,0 @@
-1. setup batch files in cmd folder about appium command, especially deviceName and udid
-2. execute StartAppiumServer class to start the appium services
-3. execute the test suite xml file in testsuite folder
