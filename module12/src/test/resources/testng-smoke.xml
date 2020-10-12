@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="All APIs Auto Test" preserve-order="true" parallel="methods" thread-count="1">
+    <test name="Functional">
+        <classes>
+            <class name="com.epam.automation.SmokeCheck"/>
+        </classes>
+    </test>
+    <listeners>
+        <listener class-name="com.epam.automation.common.listeners.RetryListener"></listener>
+        <listener class-name="com.epam.automation.common.listeners.ExtentTestNGIReporterListener"></listener>
+        <!-- ReportNg report  -->
+        <listener class-name="com.epam.automation.common.listeners.AutoTestListener"></listener>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"></listener>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"></listener>
+        <!-- ExtentReport report  -->
+
+
+    </listeners>
+</suite>
