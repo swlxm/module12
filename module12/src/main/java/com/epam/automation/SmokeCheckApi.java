@@ -8,7 +8,7 @@ import io.restassured.response.Response;
 @Server(GlobalVar.USER_URL)
 public interface SmokeCheckApi {
 
-    @Get(path = "/users", description = "Check status")
+    @Get(path = "/users", description = "Get users")
     Response getUsers();
 
 }

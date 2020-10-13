@@ -6,6 +6,7 @@ import java.util.Map;
 public class GlobalVar {
 
     public static final String CONFIGFILENAME = "application.properties";
+    public static final String APPLICATION_URL = "/v1";
     public static final String USER_URL = "";
 
     // 失败重试，等于2，则失败重试1次，共执行2次
