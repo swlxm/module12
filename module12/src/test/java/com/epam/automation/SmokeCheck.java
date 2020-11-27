@@ -41,7 +41,7 @@ public class SmokeCheck extends BaseRunner {
         response.prettyPrint();
     }
 
-    @Test
+    @Test(dependsOnMethods = "testBody")
     public void testHeader() {
         response = smokeCheckApi.getUsers();
         response.then().statusCode(200);
