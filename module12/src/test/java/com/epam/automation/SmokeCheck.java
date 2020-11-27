@@ -4,6 +4,7 @@ import com.epam.automation.common.runner.BaseRunner;
 import com.epam.automation.common.utils.ProxyUtils;
 import io.restassured.mapper.TypeRef;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class SmokeCheck extends BaseRunner {
     }
 
     @Test
+    @Ignore
     public void testStatusCode() {
         response = smokeCheckApi.getUsers();
         response.then().statusCode(200);
